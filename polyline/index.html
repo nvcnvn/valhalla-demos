@@ -75,8 +75,8 @@ Decoded Line:</br>
           };
         }});
         //render the geojson
-        L.marker(decoded[0], {color: 'green'}).addTo(map);
-        L.marker(decoded[decoded.length - 1], {color: 'blue'}).addTo(map);
+        L.marker(decoded[0].reverse(), {color: 'green'}).addTo(map);
+        L.marker(decoded[decoded.length - 1].reverse(), {color: 'blue'}).addTo(map);
         geojson.addTo(map);
         //fit it in view
         map.fitBounds(L.GeoJSON.coordsToLatLngs(decoded));
