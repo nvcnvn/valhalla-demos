@@ -75,10 +75,10 @@ Decoded Line:</br>
           };
         }});
         //render the geojson
-        L.marker(decoded[0].reverse()).addTo(map);
         geojson.addTo(map);
         //fit it in view
         map.fitBounds(L.GeoJSON.coordsToLatLngs(decoded));
+        L.marker(decoded[0].reverse()).addTo(map);
       }
       catch(e){
         alert('Invalid Encoded Polyline');
