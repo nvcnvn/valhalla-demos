@@ -24,6 +24,8 @@
 Unescape '\': <input id="unescape" type="checkbox"></br>
 Polyline6: <input id="polyline6" type="checkbox"></br>
 Number of Points: <a id="cardinality"></a></br>
+Start Point: <input id="decoded_start" type="text" /><br/>
+End Point: <input id="decoded_end" type="text" /><br/>
 Encoded Line:</br>
   <textarea id="encoded_polyline" rows="4" cols="50"></textarea></br>
 Decoded Line:</br>
@@ -51,6 +53,8 @@ Decoded Line:</br>
         var decoded = decode(encoded, mul);
         //update the display
         $('#decoded_polyline').val(JSON.stringify(decoded));
+        $('#encoded_start').val(decoded[0].reverse().join(","));
+        $('#encoded_end').val(decoded[decoded.length - 1].reverse().join(","));
         $('#cardinality').val(decoded.length);
         //clear this if its not null
         if(geojson != null)
