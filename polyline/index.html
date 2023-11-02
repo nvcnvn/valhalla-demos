@@ -21,15 +21,29 @@
     }).addTo(map);
   </script>
 
-Unescape '\': <input id="unescape" type="checkbox"></br>
-Polyline6: <input id="polyline6" type="checkbox"></br>
-Number of Points: <a id="cardinality"></a></br>
-Start Point: <input id="decoded_start" type="text" /><br/>
-End Point: <input id="decoded_end" type="text" /><br/>
-Encoded Line:</br>
-  <textarea id="encoded_polyline" rows="4" cols="50"></textarea></br>
-Decoded Line:</br>
-  <textarea id="decoded_polyline" rows="4" cols="50"></textarea></br>
+  <table>
+    <tr>
+      <td>
+        Unescape '\': <input id="unescape" type="checkbox"></br>
+        Polyline6: <input id="polyline6" type="checkbox"></br>
+      </td>
+      <td>
+        Encoded Line:</br>
+        <textarea id="encoded_polyline" rows="4" cols="50"></textarea></br>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Number of Points: <a id="cardinality"></a></br>
+        Start Point: <input id="decoded_start" type="text" /><br/>
+        End Point: <input id="decoded_end" type="text" /><br/>
+      </td>
+      <td>
+        Decoded Line:</br>
+        <textarea id="decoded_polyline" rows="4" cols="50"></textarea></br>
+      </td>
+    </tr>
+  </table>
 
   <script>
     //text change callback
@@ -53,8 +67,10 @@ Decoded Line:</br>
         var decoded = decode(encoded, mul);
         //update the display
         $('#decoded_polyline').val(JSON.stringify(decoded));
-        $('#decoded_start').val(decoded[0].reverse().join(","));
-        $('#decoded_end').val(decoded[decoded.length - 1].reverse().join(","));
+        const decoded_start = [...decoded[0]].reverse();
+        const decoded_end = [...decoded[decoded.length - 1]].reverse();
+        $('#decoded_start').val(decoded_start.join(','));
+        $('#decoded_end').val(decoded_end.join(','));
         $('#cardinality').val(decoded.length);
         //clear this if its not null
         if(geojson != null)
@@ -82,7 +98,7 @@ Decoded Line:</br>
         geojson.addTo(map);
         //fit it in view
         map.fitBounds(L.GeoJSON.coordsToLatLngs(decoded));
-        L.marker(decoded[0].reverse()).addTo(map);
+        L.marker(decoded_start).addTo(map);
       }
       catch(e){
         alert('Invalid Encoded Polyline');
