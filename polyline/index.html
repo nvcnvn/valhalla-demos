@@ -53,8 +53,8 @@ Decoded Line:</br>
         var decoded = decode(encoded, mul);
         //update the display
         $('#decoded_polyline').val(JSON.stringify(decoded));
-        $('#encoded_start').val(decoded[0].reverse().join(","));
-        $('#encoded_end').val(decoded[decoded.length - 1].reverse().join(","));
+        $('#decoded_start').val(decoded[0].reverse().join(","));
+        $('#decoded_end').val(decoded[decoded.length - 1].reverse().join(","));
         $('#cardinality').val(decoded.length);
         //clear this if its not null
         if(geojson != null)
